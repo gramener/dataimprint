@@ -13,7 +13,10 @@
   </head>
   <body class="pt-sans mid-gray flex vh-100"> <!--viewport height-->
     <!-- Left-hand side -->
-    <section class="w-50 pa5 bg-white overflow-y-auto"> <!--width set to half; padding on all sides; if y is > parent section height, then put a scrollbar-->
+    <section class="w-50 pa5 bg-white overflow-y-auto relative"> <!--width set to half; padding on all sides; if y is > parent section height, then put a scrollbar-->
+      <!-- Logo -->
+      <img src="./images/Logo.png" class="absolute top-2 right-2" style="width: 130px;" />
+
       <!-- Title and context -->
       <div class="pb2"> <!--padding bottom-->
         <h1 class="f2 lh-title mt0">Data Portraits</h1> <!--font scale; line height for title; margin top set to 0-->
@@ -53,40 +56,34 @@
         </div>
       </div>
 
-      <div class="flex justify-between items-end pb2">
-        <!-- Share buttons -->
-        <div class="pb2">
-          <h2 class="f4 lh-title">Share on social media</h2>
-          <div class="flex">
-            <div class="mr2">
-              <!-- Tweeters -->
-              <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-size="small" data-text="Check out generative data portraits by @Gramener" data-show-count="false">Tweet</a>
-              <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-            </div>
-
-            <div class="mr2">
-              <!-- Facebookers -->
-              <div id="fb-root"></div>
-              <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v3.3"></script>
-              <div class="fb-share-button" data-href="https://gramener.com" data-layout="button" data-size="small"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fgramener.com%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div>
-            </div>
-
-            <div>
-              <!-- LinkedIners -->
-              <script src="https://platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script>
-              <script type="IN/Share" data-url="https://gramener.com"></script>
-            </div>
+      <!-- Share buttons -->
+      <div class="pb2">
+        <h2 class="f4 lh-title">Share on social media</h2>
+        <div class="flex">
+          <div class="mr2">
+            <!-- Tweeters -->
+            <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-size="small" data-text="Check out generative data portraits by @Gramener" data-show-count="false">Tweet</a>
+            <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
           </div>
-        </div>
 
-        <div class="pb2">
-          <img src="./images/Logo.png" class="w4 mr4" />
+          <div class="mr2">
+            <!-- Facebookers -->
+            <div id="fb-root"></div>
+            <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v3.3"></script>
+            <div class="fb-share-button" data-href="https://gramener.com" data-layout="button" data-size="small"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fgramener.com%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div>
+          </div>
+
+          <div>
+            <!-- LinkedIners -->
+            <script src="https://platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script>
+            <script type="IN/Share" data-url="https://gramener.com"></script>
+          </div>
         </div>
       </div>
     </section>
 
     <!-- Right-hand side -->
-    <section class="w-50 pa5 bg-washed-blue flex justify-center">
+    <section class="w-50 pa5 flex justify-center" style="background: #fafafa">
       <div class="flex justify-between items-start">
         <!-- Form -->
         <div class="w-60 flex flex-column mr5">
@@ -99,7 +96,8 @@
 
           <!-- Interests -->
           <div class="mb4">
-            <div class="mb2">What interests you?</div>
+            <div class="mb1">What interests you?</div>
+            <div class="mb2">(0 is lowest, 10 is highest)</div>
             <div class="flex justify-start items-center mb1">
               <label for="arts" class="mr2 w4">Arts</label>
               <input id="arts-input" type="range" name="arts" min="0" max="10" step="1" value="3" class="mr2">

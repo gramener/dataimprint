@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Data Portraits</title>
+    <script src="./libs/p5.min.js"></script>
+    <script src="./libs/p5.dom.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/tachyons">
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans&display=swap" rel="stylesheet">
+    <style>
+      .pt-sans { font-family: 'PT Sans', sans-serif; }
+    </style>
+  </head>
+  <body class="pt-sans mid-gray flex vh-100"> <!--viewport height-->
+    <!-- Left-hand side -->
+    <section class="w-50 pa5 bg-white overflow-y-auto"> <!--width set to half; padding on all sides; if y is > parent section height, then put a scrollbar-->
+      <!-- Title and context -->
+      <div class="pb2"> <!--padding bottom-->
+        <h1 class="f2 lh-title mt0">Data Portraits</h1> <!--font scale; line height for title; margin top set to 0-->
+        <blockquote cite="http://giorgialupi.com/data-humanism-my-manifesto-for-a-new-data-wold" class="ml6 mv5 gray"> <!--custom vertical margin for placement-->
+          <p class="f5 lh-copy i relative"> <!--font scale; line height for copy; quote is set to absolute and will be relative to the parent-->
+            <span class="serif f2 absolute" style="top: -24px; left: -24px;">&ldquo;</span> <!-- font scale; absolute positioning wrt the parent -->
+            We are ready to question the impersonality of a merely technical approach to data and to begin designing ways to connect numbers to what they really stand for: knowledge, behaviors, people.
+          </p>
+          <footer>&ndash; Giorgia Lupi, <cite>Data Humanism</cite></footer>
+        </blockquote>
+        <p class="f4 lh-copy measure-wide"> <!--margin top (see doc); font scale; line height; setting line length-->
+          Everyone's different: from our names and habits, to our social preferences, we set ourselves apart as unique bundles of traits. 
+        </p>
+        <p class="f4 lh-copy measure-wide"> 
+          This generative data art project aims at capturing the distinct portrait of an individual. Great for badges, bookmarks and mementos!
+        </p>
+      </div>
+
+      <!-- How to read it -->
+      <div class="pb4">
+        <h2 class="f3 lh-title">How to Read It</h2>
+        <div class="f4 dark-blue b">Name</div>
+        <img src="./images/Legend-01.png" class="w-100 dib" />
+        <div class="f4 dark-blue b">Interests</div>
+        <img src="./images/Legend-02.png" class="w-100 dib" />
+        <div class="f4 dark-blue b">Unread emails</div>
+        <img src="./images/Legend-03.png" class="w-100 dib" />
+        <div class="flex w-100">
+          <div class="mr2" style="width: calc(50% - 4px)">
+            <div class="f4 dark-blue b pb2">Social</div>
+            <img src="./images/Legend-04.png" class="br b--light-gray w-100 dib"  />
+          </div>
+          <div class="mr2" style="width: calc(50% - 4px)">
+            <div class="f4 dark-blue b pb2">Tweets</div>
+            <img src="./images/Legend-05.png" class="w-100 dib" />
+          </div>
+        </div>
+      </div>
+
+      <div class="flex justify-between items-end pb2">
+        <!-- Share buttons -->
+        <div class="pb2">
+          <h2 class="f4 lh-title">Share on social media</h2>
+          <div class="flex">
+            <div class="mr2">
+              <!-- Tweeters -->
+              <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-size="small" data-text="Check out generative data portraits by @Gramener" data-show-count="false">Tweet</a>
+              <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+            </div>
+
+            <div class="mr2">
+              <!-- Facebookers -->
+              <div id="fb-root"></div>
+              <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v3.3"></script>
+              <div class="fb-share-button" data-href="https://gramener.com" data-layout="button" data-size="small"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fgramener.com%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div>
+            </div>
+
+            <div>
+              <!-- LinkedIners -->
+              <script src="https://platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script>
+              <script type="IN/Share" data-url="https://gramener.com"></script>
+            </div>
+          </div>
+        </div>
+
+        <div class="pb2">
+          <img src="./images/Logo.png" class="w4 mr4" />
+        </div>
+      </div>
+    </section>
+
+    <!-- Right-hand side -->
+    <section class="w-50 pa5 bg-washed-blue flex justify-center">
+      <div class="flex justify-between items-start">
+        <!-- Form -->
+        <div class="w-60 flex flex-column mr5">
+
+          <!-- Name -->
+          <div class="mb4">
+            <label for="name" class="db mb2">What is your name?</label>
+            <input id="name-input" type="text" name="name" placeholder="Enter your name" class="pa2 w-100" value="Sheldon Lee Cooper">
+          </div>
+
+          <!-- Interests -->
+          <div class="mb4">
+            <div class="mb2">What interests you?</div>
+            <div class="flex justify-start items-center mb1">
+              <label for="arts" class="mr2 w4">Arts</label>
+              <input id="arts-input" type="range" name="arts" min="0" max="10" step="1" value="3" class="mr2">
+              <span id="arts-input-value"></span>
+            </div>
+            <div class="flex justify-start items-center mb1">
+              <label for="science" class="mr2 w4">Science</label>
+              <input id="science-input" type="range" name="science" min="0" max="10" step="1" value="4" class="mr2">
+              <span id="science-input-value"></span>
+            </div>
+            <div class="flex justify-start items-center mb1">
+              <label for="politics" class="mr2 w4">Politics</label>
+              <input id="politics-input" type="range" name="politics" min="0" max="10" step="1" value="8" class="mr2">
+              <span id="politics-input-value"></span>
+            </div>
+            <div class="flex justify-start items-center mb1">
+              <label for="literature" class="mr2 w4">Literature</label>
+              <input id="literature-input" type="range" name="literature" min="0" max="10" step="1" value="6" class="mr2">
+              <span id="literature-input-value"></span>
+            </div>
+          </div>
+
+          <!-- Emails -->
+          <div class="mb4">
+            <div class="mb2">How many unread emails do you have?</div>
+            <div class="flex justify-start items-center mb1">
+              <input id="email-0" type="radio" name="emails" value="NONE" class="mr2">
+              <label for="email-0" class="mr2">Nope, not one</label>
+            </div>
+            <div class="flex justify-start items-center mb1">
+              <input id="email-10" type="radio" name="emails" value="10" class="mr2" checked>
+              <label for="email-10" class="mr2">Maybe about 10</label>
+            </div>
+            <div class="flex justify-start items-center mb1">
+              <input id="email-20" type="radio" name="emails" value="20" class="mr2">
+              <label for="email-20" class="mr2">Maybe about 20</label>
+            </div>
+            <div class="flex justify-start items-center mb1">
+              <input id="email-too-many" type="radio" name="emails" value="TOO_MANY" class="mr2">
+              <label for="email-too-many" class="mr2">Can't keep track</label>
+            </div>
+          </div>
+
+          <!-- Social -->
+          <div class="mb4">
+            <div class="mb2">You enjoy vibrant social events</div>
+            <div class="flex justify-start items-center mb1">
+              <input id="strongly-agree" type="radio" name="social" value="STRONGLY_AGREE" class="mr2">
+              <label for="strongly-agree" class="mr2">Strongly agree</label>
+            </div>
+            <div class="flex justify-start items-center mb1">
+              <input id="agree" type="radio" name="social" value="AGREE" class="mr2">
+              <label for="agree" class="mr2">Agree</label>
+            </div>
+            <div class="flex justify-start items-center mb1">
+              <input id="neutral" type="radio" name="social" value="NEUTRAL" class="mr2" checked>
+              <label for="neutral" class="mr2">Neutral</label>
+            </div>
+            <div class="flex justify-start items-center mb1">
+              <input id="disagree" type="radio" name="social" value="DISAGREE" class="mr2">
+              <label for="disagree" class="mr2">Disagree</label>
+            </div>
+            <div class="flex justify-start items-center mb1">
+              <input id="strongly-disagree" type="radio" name="social" value="STRONGLY_DISAGREE" class="mr2">
+              <label for="strongly-disagree" class="mr2">Strongly disagree</label>
+            </div>
+          </div>
+
+          <!-- Tweets -->
+          <div>
+            <div class="mb2">How many times did you tweet today?</div>
+            <div class="flex justify-start items-center mb1">
+              <input id="tweet-what" type="radio" name="tweets" value="TWEET_WHAT" class="mr2">
+              <label for="tweet-what" class="mr2">What's a tweet?</label>
+            </div>
+            <div class="flex justify-start items-center mb1">
+              <input id="tweet-once" type="radio" name="tweets" value="TWEET_ONCE" class="mr2">
+              <label for="tweet-once" class="mr2">Just once or twice</label>
+            </div>
+            <div class="flex justify-start items-center mb1">
+              <input id="tweet-many" type="radio" name="tweets" value="TWEET_MANY" class="mr2" checked>
+              <label for="tweet-many" class="mr2">A couple of times</label>
+            </div>
+            <div class="flex justify-start items-center mb1">
+              <input id="tweet-storm" type="radio" name="tweets" value="TWEET_STORM" class="mr2">
+              <label for="tweet-storm" class="mr2">I'm raining tweets</label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Canvas and download button -->
+        <div class="w-40 flex flex-column items-center">
+          <div id="bookmark-canvas" class="mb4 ba b--light-gray">
+            <!-- Canvas goes here! -->
+          </div>
+          <button id="btn-download" class="w-100 ph1 pv2 bg-red white link pointer dim bn br2">Download</button>
+        </div>
+      </div>
+    </section>
+    <script src="sketch.js"></script>
+  </body>
+</html>

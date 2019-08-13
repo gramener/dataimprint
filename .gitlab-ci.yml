@@ -1,9 +1,0 @@
-deploy:
-  script: deploy
-  only: [master]
-  variables:
-    SERVER: gramener.com
-    URL: dataimprint
-    VERSION: v0
-    PORT: '6800'
-    # SETUP:
